@@ -1,8 +1,9 @@
 
-package com.dao;
+package com.repositary;
 
 import com.model.MatchModel;
 import com.model.TeamModel;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -36,6 +37,7 @@ public interface MatchRepo extends CrudRepository<MatchModel, Integer> {
      * @return the optional
      */
     Optional<MatchModel> findByTeam1(TeamModel team1);
+    Optional<MatchModel> findByTeam2(TeamModel team2);
 
     /**
      * Find all by team 1 list.
@@ -44,4 +46,9 @@ public interface MatchRepo extends CrudRepository<MatchModel, Integer> {
      * @return the list
      */
     List<MatchModel> findAllByTeam1(TeamModel team1);
+
+    @Query(value = "FROM MatchModel where result is null")
+    List<MatchModel> findByResult();
+
+
 }

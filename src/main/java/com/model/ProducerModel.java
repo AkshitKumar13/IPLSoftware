@@ -3,7 +3,7 @@ package com.model;
 /**
  * The type Json model.
  */
-public class JsonModel {
+public class ProducerModel {
     private long id;
     /**
      * The Result.

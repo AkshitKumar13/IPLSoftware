@@ -1,16 +1,17 @@
 package com.controller;
 
 
-
-import com.dao.MatchRepo;
- import com.model.MatchModel;
+import com.repositary.MatchRepo;
+import com.model.MatchModel;
 import com.model.TeamModel;
-import com.service.*;
- import org.springframework.beans.factory.annotation.Autowired;
+import com.service.MatchService;
+import com.service.ProducerService;
+import com.service.ResultService;
+import com.service.TeamService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,14 +28,14 @@ public class MatchController {
 
 
     @Autowired
-     private   ResultService reservice;
+    private ResultService reservice;
     @Autowired
     private ProducerService producerService;
     @Autowired
-    private   MatchService matchService;
+    private MatchService matchService;
 
     @Autowired
-    private   TeamService teamService;
+    private TeamService teamService;
 
     @Autowired
     private MatchRepo matchRepo;
@@ -47,7 +48,7 @@ public class MatchController {
      */
     @GetMapping(value = "/viewMatch")
     public String viewMatch(Model model) {
-       matchService.viewMatchs(model);
+        matchService.scheduledMatchs(model);
         return "viewMatch";
     }
 
@@ -60,7 +61,7 @@ public class MatchController {
 //return match scheduling page
     @GetMapping(value = "/matchSchedule")
     public String addMatch(final Model model) {
-   matchService.AddMatch(model);
+        matchService.AddMatch(model);
         return "matchSchedule";
     }
 
@@ -91,18 +92,17 @@ public class MatchController {
     @RequestMapping(value = "/upMatch", method = RequestMethod.POST)
     public String updateMtch(@Valid @ModelAttribute("match") MatchModel match, final BindingResult result, RedirectAttributes redirectAttributes) {
 
-         if (matchService.venueExists(match.getVenue(), result) && matchService.DateIsExist(match.getScheduledate(), result)) {
+        if (matchService.venueExists(match.getVenue(), result) && matchService.DateIsExist(match.getScheduledate(), result)) {
             result.addError(new FieldError("match", "scheduledate", "date or venue already exists"));
         }
 
         if (result.hasErrors()) {
 
             return "updateMatch";
-        }
-        else {
+        } else {
             matchService.saveMatch(match);
             redirectAttributes.addFlashAttribute("Updatemessage", "Match Updated successfully");
-              return "redirect:editMatch";
+            return "redirect:editMatch";
         }
     }
 
@@ -124,11 +124,10 @@ public class MatchController {
             result.addError(new FieldError("match", "Team2Description", "runs is not greater then balls"));
         }
         if (result.hasErrors()) {
-             return "UpdateScore";
-        }
-        else {
+            return "UpdateScore";
+        } else {
             match = reservice.getResult(match);
-            // producerService.publishToTopic(match);
+             producerService.publishToTopic(match);
             matchService.saveMatch(match);
             return "redirect:EditListScore";
         }
@@ -143,7 +142,7 @@ public class MatchController {
      */
     @GetMapping(value = "/UpdateScore")
     public String viewAddScore(final Model model) {
-      matchService.viewScores(model);
+        matchService.viewScores(model);
         return "UpdateScore";
     }
 
@@ -156,7 +155,7 @@ public class MatchController {
 // edit score List
     @GetMapping(value = "/EditListScore")
     public String scoreResultList(final Model model) {
-      matchService.scoresResult(model);
+        matchService.scoresResult(model);
         return "EditListScore";
     }
 
@@ -184,7 +183,7 @@ public class MatchController {
      * @param id the id
      * @return the model and view
      */
-//edit a match
+
     @RequestMapping("/editmatch/{matchid}")
     public ModelAndView showEditPlayer(@PathVariable(name = "matchid") final String id) {
         ModelAndView modelAndView = new ModelAndView("updateMatch");
@@ -219,7 +218,7 @@ public class MatchController {
 //show result
     @GetMapping(value = "/result")
     public String viewMatchResult(final Model model) {
-   matchService.matchResult(model);
+        matchService.matchResult(model);
         return "result";
     }
 

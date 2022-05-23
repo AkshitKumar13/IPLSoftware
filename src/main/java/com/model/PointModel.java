@@ -6,7 +6,7 @@ import javax.persistence.*;
  * The type Point model.
  */
 @Entity
-public class PointModel {
+public class PointModel{
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -119,6 +119,18 @@ public class PointModel {
         return id;
     }
 
+    public PointModel(Long id, TeamModel team, int winCount, int lossCount, int matchCount, int point) {
+        this.id = id;
+        this.team = team;
+        this.winCount = winCount;
+        this.lossCount = lossCount;
+        this.matchCount = matchCount;
+        this.point = point;
+    }
+
+    public PointModel() {
+    }
+
     /**
      * Sets id.
      *
@@ -127,4 +139,6 @@ public class PointModel {
     public void setId(Long id) {
         this.id = id;
     }
+
+
 }

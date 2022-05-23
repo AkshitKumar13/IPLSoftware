@@ -1,4 +1,4 @@
-package com.dao;
+package com.repositary;
 
  import com.model.TeamModel;
 import org.springframework.data.jpa.repository.JpaRepository;

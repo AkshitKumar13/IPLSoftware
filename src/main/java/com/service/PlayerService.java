@@ -1,6 +1,6 @@
 package com.service;
 
-import com.dao.PlayerRepo;
+import com.repositary.PlayerRepo;
 import com.model.PlayersModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,6 +45,7 @@ public class PlayerService {
      */
     @Transactional
     public Optional<PlayersModel> findByPlayersplayer_name(String playername) {
+
         return prepo.findByName(playername);
     }
 

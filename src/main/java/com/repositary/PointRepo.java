@@ -1,9 +1,11 @@
 
-package com.dao;
+package com.repositary;
 
 import com.model.PointModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 
 /**
@@ -19,5 +21,7 @@ public interface PointRepo extends JpaRepository<PointModel, Long> {
      * @return the point model
      */
     PointModel findByTeamId(Long id);
+   List<PointModel> findByOrderByPointDesc();
+
 
 }

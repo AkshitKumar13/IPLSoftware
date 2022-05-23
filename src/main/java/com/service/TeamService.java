@@ -1,5 +1,5 @@
 package com.service;
-import com.dao.TeamRepo;
+import com.repositary.TeamRepo;
 import com.model.TeamModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

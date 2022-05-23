@@ -1,4 +1,4 @@
-package com.dao;
+package com.repositary;
 import com.model.Login;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

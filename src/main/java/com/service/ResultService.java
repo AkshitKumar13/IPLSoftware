@@ -1,6 +1,6 @@
 package com.service;
 
-import com.dao.PointRepo;
+import com.repositary.PointRepo;
 import com.model.MatchModel;
 import com.model.PointModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,8 +89,9 @@ public class ResultService {
      * @return the list
      */
     public List<PointModel> getPoint() {
-        List<PointModel> point = pointRepo.findAll();
-        return point;
+        List<PointModel> point = pointRepo.findByOrderByPointDesc();
+
+         return point;
     }
 
 

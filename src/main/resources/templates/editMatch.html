@@ -69,10 +69,10 @@ th, td {
 tr{
    border: 1px solid grey;
 }
-tr:hover {
-  background-color: black;
-  color:white;
-}
+<!--tr:hover {-->
+<!--  background-color: black;-->
+<!--  color:white;-->
+<!--}-->
 </style>
 
 </head>
@@ -85,6 +85,8 @@ tr:hover {
         <li><a th:href="@{'/editPlayers'}">Player Management</a></li>
         <li><a th:href="@{'/editMatch'}">Match Management</a></li>
         <li><a th:href="@{'/EditListScore'}">Score Board</a></li>
+        <li><a th:href="@{'/logout'}">Logout</a></li>
+
     </ul>
 </header>
 <br>
@@ -130,23 +132,23 @@ tr:hover {
             <a th:href="@{'/editmatch/' + ${match.matchid}}"><i class="fa fa-edit" style="font-size:24px; color:green"></i></a>
         </td>
         <td>
-            <th:href onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-trash-o" style="font-size:24px; color:red"></i> </th:href>
-
-            <div id="id01" class="modal">
-                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-                <form class="modal-content" action="/action_page.php">
-                    <div class="container">
-                        <p>Are you sure you want to delete your Match?</p>
-
-                        <div class="clearfix">
-                            <button type="button" class="cancelbtn" text="white"><a th:href="@{'/editMatch/'}"> <b>Cancel</b></a></button>
-                            <button type="button" class="deletebtn" text="white"><a th:href="@{'/deletematch/' + ${match.matchid}}"><b>delete</b></a>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+            <a th:href="@{'/deletematch/' + ${match.matchid}}"><i class="fa fa-trash-o" style="font-size:24px; color:red"></i> </a>
         </td>
+<!--            <div id="id01" class="modal">-->
+<!--                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>-->
+<!--                <form class="modal-content" action="/action_page.php">-->
+<!--                    <div class="container">-->
+<!--                        <p>Are you sure you want to delete your Match?</p>-->
+
+<!--                        <div class="clearfix">-->
+<!--&lt;!&ndash;                            <button type="button" class="cancelbtn" text="white"><a th:href="@{'/editMatch/'}"> <b>Cancel</b></a></button>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <button type="button" class="deletebtn" text="white"><a th:href="@{'/deletematch/'+${match.matchid}}"><b>delete</b></a>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </button>&ndash;&gt;-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--            </div>-->
+
 
 
 

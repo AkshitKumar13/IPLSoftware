@@ -1,7 +1,7 @@
 package com.service;
 
 
-import com.dao.LoginRepository;
+import com.repositary.LoginRepository;
 import com.model.Login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

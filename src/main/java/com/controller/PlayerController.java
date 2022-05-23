@@ -1,5 +1,5 @@
 package com.controller;
-import com.dao.TeamRepo;
+import com.repositary.TeamRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import com.dao.PlayerRepo;
+import com.repositary.PlayerRepo;
 import com.model.PlayersModel;
 import com.model.TeamModel;
 import com.service.PlayerService;
